@@ -115,6 +115,21 @@
                                     </stackView>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nKn-IM-ybZ" userLabel="TimerView">
                                         <rect key="frame" x="0.0" y="571.5" width="374" height="246.5"/>
+                                        <subviews>
+                                            <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progressViewStyle="bar" translatesAutoresizingMaskIntoConstraints="NO" id="iCd-pa-yiN">
+                                                <rect key="frame" x="0.0" y="120.5" width="374" height="6"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="5" id="daA-ll-Gu6"/>
+                                                </constraints>
+                                                <color key="progressTintColor" systemColor="systemYellowColor" red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <color key="trackTintColor" systemColor="systemGrayColor" red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            </progressView>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstItem="iCd-pa-yiN" firstAttribute="centerY" secondItem="nKn-IM-ybZ" secondAttribute="centerY" id="dlH-5v-5eQ"/>
+                                            <constraint firstItem="iCd-pa-yiN" firstAttribute="leading" secondItem="nKn-IM-ybZ" secondAttribute="leading" id="nSC-1H-oc3"/>
+                                            <constraint firstAttribute="trailing" secondItem="iCd-pa-yiN" secondAttribute="trailing" id="tOf-FH-bl7"/>
+                                        </constraints>
                                     </view>
                                 </subviews>
                             </stackView>
@@ -129,6 +144,7 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
+                        <outlet property="progressBar" destination="iCd-pa-yiN" id="47g-r0-Nhy"/>
                         <outlet property="titleLabel" destination="A2M-1r-tc8" id="xlv-zO-kWQ"/>
                     </connections>
                 </viewController>

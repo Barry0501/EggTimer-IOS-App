@@ -13,9 +13,12 @@ class ViewController: UIViewController {
     let eggTimes = ["Soft":2,"Medium":4,"Hard":6];
     
     var timer:Timer?
-    var secondRemaining = 20
+    var totalTime = 0
+    var secondPassed = 0
 
     @IBOutlet weak var titleLabel: UILabel!
+
+    @IBOutlet weak var progressBar: UIProgressView!
     
     @IBAction func hardnessPressed(_ sender: UIButton) {
         
@@ -23,18 +26,25 @@ class ViewController: UIViewController {
         
         let hardness = sender.currentTitle!;
         
-        secondRemaining = eggTimes[hardness]!;
+        totalTime = eggTimes[hardness]!;
+        secondPassed = 0;
+        progressBar.progress = 0;
+        titleLabel.text = hardness;
         
         timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector:#selector(updateTimer),userInfo: nil, repeats: true)
     }
     
     @objc func updateTimer(){
         
-        if(secondRemaining > 0){
-            print("\(secondRemaining) seconds");
-            secondRemaining-=1;
+        if(secondPassed < totalTime){
+            secondPassed+=1;
+            progressBar.progress = Float(secondPassed) / Float(totalTime);
+            
+            if(secondPassed == totalTime){
+                titleLabel.text = "Done!";
+            }
+            
         }else{
-            titleLabel.text = "Done!";
             timer?.invalidate();
             timer = nil;
         }
