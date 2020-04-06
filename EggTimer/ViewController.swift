@@ -10,11 +10,34 @@ import UIKit
 
 class ViewController: UIViewController {
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        // Do any additional setup after loading the view.
+    let eggTimes = ["Soft":2,"Medium":4,"Hard":6];
+    
+    var timer:Timer?
+    var secondRemaining = 20
+
+    @IBOutlet weak var titleLabel: UILabel!
+    
+    @IBAction func hardnessPressed(_ sender: UIButton) {
+        
+        timer?.invalidate();
+        
+        let hardness = sender.currentTitle!;
+        
+        secondRemaining = eggTimes[hardness]!;
+        
+        timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector:#selector(updateTimer),userInfo: nil, repeats: true)
     }
-
-
+    
+    @objc func updateTimer(){
+        
+        if(secondRemaining > 0){
+            print("\(secondRemaining) seconds");
+            secondRemaining-=1;
+        }else{
+            titleLabel.text = "Done!";
+            timer?.invalidate();
+            timer = nil;
+        }
+    }
 }
 
